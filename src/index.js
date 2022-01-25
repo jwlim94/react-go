@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDom from 'react-dom'
 import AppFooter from './AppFooter'
+import AppHeader from './AppHeader'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
@@ -10,12 +11,16 @@ import AppContent from './AppContent'
 class App extends Component {
 
   render() {
+    const myProps = {
+      title: "My app",
+      subject: "My subject",
+      fav_color: "red",
+    }
+
     return (
-      <div>
-        <div className="greeting">
-          <h1>Hello world!</h1>
-          <AppContent />
-        </div>
+      <div className="greeting">
+        <AppHeader {...myProps} />
+        <AppContent />
         <AppFooter />
       </div>
     )
