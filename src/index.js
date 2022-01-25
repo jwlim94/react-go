@@ -1,17 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { Component } from 'react'
+import ReactDom from 'react-dom'
+import AppFooter from './AppFooter'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import './index.css'
+import AppContent from './AppContent'
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+class App extends Component {
+
+  render() {
+    return (
+      <div>
+        <div className="greeting">
+          <h1>Hello world!</h1>
+          <AppContent />
+        </div>
+        <AppFooter />
+      </div>
+    )
+  }
+}
+
+ReactDom.render(<App />, document.getElementById('root'))
