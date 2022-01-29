@@ -2,25 +2,29 @@ import React, { Component } from 'react'
 import ReactDom from 'react-dom'
 import AppFooter from './AppFooter'
 import AppHeader from './AppHeader'
+import AppContent from './AppContent'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-
 import './index.css'
-import AppContent from './AppContent'
 
 class App extends Component {
 
-  render() {
-    const myProps = {
-      title: "My app",
-      subject: "My subject",
-      fav_color: "red",
-    }
+  constructor(props) {
+    super(props)
+    this.handlePostChange = this.handlePostChange.bind(this)
+    this.state = {posts: []}
+  }
 
+  handlePostChange(posts) {
+    this.setState({posts: posts})
+  }
+
+  render() {
     return (
-      <div className="greeting">
-        <AppHeader {...myProps} />
-        <AppContent />
+      <div>
+        <AppHeader title='my app' posts={this.state.posts} handlePostChange={this.handlePostChange} />
+        <AppContent handlePostChange={this.handlePostChange}/>
         <AppFooter />
       </div>
     )

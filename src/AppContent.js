@@ -2,18 +2,21 @@ import React, { Component } from "react";
 
 export default class AppContent extends Component {
 
-    state = {posts: []}
-
     constructor(props) {
         super(props)
-        this.listRef = React.createRef()
+        this.state = {posts: []}
+        this.handlePostChange = this.handlePostChange.bind(this)
     }
 
-    // function
+    handlePostChange(posts) {
+        this.props.handlePostChange(posts)
+    }
+
     fetchList = async () => {
         const res = await fetch('https://jsonplaceholder.typicode.com/posts')
         const json = await res.json()
         this.setState({posts: json})
+        this.handlePostChange(json)
     }
 
     clickedItem = (x) => {
@@ -23,27 +26,18 @@ export default class AppContent extends Component {
     render(){
         return (
             <div>
-                <p>This is the content</p>
-                
-                <br/>
-
-                <hr />
-
-                <p>This is some text</p>
-
                 <button onClick={this.fetchList} className="btn btn-primary">Fetch Data</button>
-
+                <br />
+                <ul>
+                    {this.state.posts.map(c => (
+                        <li key={c.id}>
+                            <a href="#!" onClick={() => this.clickedItem(c.id)}>
+                                    {c.title}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
                 <hr />
-
-               <ul>
-                   {this.state.posts.map(c => (
-                       <li key={c.id}>
-                           <a href="#!" onClick={() => this.clickedItem(c.id)}>
-                                {c.title}
-                           </a>
-                       </li>
-                   ))}
-               </ul>
             </div>
         )
     }

@@ -8,7 +8,6 @@ export default class AppFooter extends Component {
 
         return (
             <Fragment>
-                <hr/>
                 <p className="footer">Copyright &copy; {currYear}</p>
             </Fragment>
         )
