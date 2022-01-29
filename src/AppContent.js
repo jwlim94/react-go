@@ -4,7 +4,6 @@ export default class AppContent extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {posts: []}
         this.handlePostChange = this.handlePostChange.bind(this)
     }
 
@@ -15,7 +14,6 @@ export default class AppContent extends Component {
     fetchList = async () => {
         const res = await fetch('https://jsonplaceholder.typicode.com/posts')
         const json = await res.json()
-        this.setState({posts: json})
         this.handlePostChange(json)
     }
 
@@ -29,7 +27,7 @@ export default class AppContent extends Component {
                 <button onClick={this.fetchList} className="btn btn-primary">Fetch Data</button>
                 <br />
                 <ul>
-                    {this.state.posts.map(c => (
+                    {this.props.posts.map(c => (
                         <li key={c.id}>
                             <a href="#!" onClick={() => this.clickedItem(c.id)}>
                                     {c.title}

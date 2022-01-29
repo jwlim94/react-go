@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import ReactDom from 'react-dom'
 import AppHeader from './AppHeader'
 import AppContent from './AppContent'
-import AppFooterFunctionalComponent from './AppFooterFunctionalComponent'
-// import AppFooter from './AppFooter'
+// import AppFooterFunctionalComponent from './AppFooterFunctionalComponent'
+import AppFooter from './AppFooter'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
@@ -25,9 +25,9 @@ class App extends Component {
     return (
       <div>
         <AppHeader title='my app' posts={this.state.posts} handlePostChange={this.handlePostChange} />
-        <AppContent handlePostChange={this.handlePostChange}/>
-        {/* <AppFooter /> */}
-        <AppFooterFunctionalComponent />
+        <AppContent posts={this.state.posts} handlePostChange={this.handlePostChange}/>
+        <AppFooter />
+        {/* <AppFooterFunctionalComponent /> */}
       </div>
     )
   }
